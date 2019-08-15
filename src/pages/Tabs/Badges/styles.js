@@ -92,3 +92,10 @@ export const ModelCompany = styled.View`
   border-width: 1px;
   border-color: #cecece;
 `;
+
+export const ContainerBadge = styled.View`
+  align-items: center;
+  justify-content: center;
+  height: 140;
+  margin-bottom: 10px;
+`;

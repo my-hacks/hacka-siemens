@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Text, View, Image } from "react-native";
+import React, { Component } from 'react';
+import { Text, View, Image } from 'react-native';
 import {
   Container,
   Title,
@@ -15,12 +15,13 @@ import {
   BadgesArea,
   CompanyData,
   ModelCompany,
-} from './styles';
-import coracoes from '../../../assets/img/3-coracoes-cafe-logo.png';
-import badge_1 from "../../../assets/badges/badge_1.png";
-import badge_2 from "../../../assets/badges/badge_2.png";
-import badge_3 from "../../../assets/badges/badge_3.png";
-import badge_4 from "../../../assets/badges/badge_4.png";
+  ContainerBadge,
+} from "./styles";
+import coracoes from "../../../assets/img/3-coracoes-cafe-logo.png";
+import badge_1 from '../../../assets/badges/badge_1.png';
+import badge_2 from '../../../assets/badges/badge_2.png';
+import badge_3 from '../../../assets/badges/badge_3.png';
+import badge_4 from '../../../assets/badges/badge_4.png';
 
 export class Badges extends Component {
   render() {
@@ -88,94 +89,100 @@ export class Badges extends Component {
             </CompanyData>
           </RightMainContent>
           <LeftMainContent>
-            <Text style={{ fontSize: 22, fontWeight: "bold" }}>
+            <Text style={{ fontSize: 22, fontWeight: 'bold' }}>
               Premios e Reconhecimentos
             </Text>
             <Text />
             <BadgesArea>
-              <Badge>
-                <Image
-                  source={badge_1}
-                  resizeMode="cover"
-                  style={{ height: 100, width: 100 }}
-                />
-              </Badge>
-              <Badge>
-                <Image
-                  source={badge_2}
-                  resizeMode="cover"
-                  style={{ height: 100, width: 100 }}
-                />
-              </Badge>
-              <Badge>
-                <Image
-                  source={badge_2}
-                  resizeMode="cover"
-                  style={{ height: 100, width: 100 }}
-                />
-              </Badge>
-              <Badge>
-                <Image
-                  source={badge_3}
-                  resizeMode="cover"
-                  style={{ height: 100, width: 100 }}
-                />
-              </Badge>
-              <Badge>
-                <Image
-                  source={badge_4}
-                  resizeMode="cover"
-                  style={{ height: 100, width: 100 }}
-                />
-              </Badge>
-              <Badge>
-                <Image
-                  source={badge_4}
-                  resizeMode="cover"
-                  style={{ height: 100, width: 100 }}
-                />
-              </Badge>
-              <Badge>
-                <Image
-                  source={badge_4}
-                  resizeMode="cover"
-                  style={{ height: 100, width: 100 }}
-                />
-              </Badge>
-              <Badge>
-                <Image
-                  source={badge_4}
-                  resizeMode="cover"
-                  style={{ height: 100, width: 100 }}
-                />
-              </Badge>
+              <ContainerBadge>
+                <Badge>
+                  <Image
+                    source={badge_1}
+                    resizeMode="cover"
+                    style={{ height: 100, width: 100 }}
+                  />
+                </Badge>
+                <Text>Maquinario Pesado</Text>
+                <Text>2018</Text>
+              </ContainerBadge>
+              <ContainerBadge>
+                <Badge>
+                  <Image
+                    source={badge_2}
+                    resizeMode="cover"
+                    style={{ height: 100, width: 100 }}
+                  />
+                </Badge>
+                <Text>Efetividade 365</Text>
+                <Text>2018</Text>
+              </ContainerBadge>
+              <ContainerBadge>
+                <Badge>
+                  <Image
+                    source={badge_2}
+                    resizeMode="cover"
+                    style={{ height: 100, width: 100 }}
+                  />
+                </Badge>
+                <Text>Efetividade 365</Text>
+                <Text>2019</Text>
+              </ContainerBadge>
+              <ContainerBadge>
+                <Badge>
+                  <Image
+                    source={badge_3}
+                    resizeMode="cover"
+                    style={{ height: 100, width: 100 }}
+                  />
+                </Badge>
+                <Text>0 Acidentes</Text>
+                <Text>2017</Text>
+              </ContainerBadge>
+              <ContainerBadge>
+                <Badge>
+                  <Image
+                    source={badge_4}
+                    resizeMode="cover"
+                    style={{ height: 100, width: 100 }}
+                  />
+                </Badge>
+                <Text>Fabrica Modelo</Text>
+                <Text>2019</Text>
+              </ContainerBadge>
+              <ContainerBadge>
+                <Badge>
+                  <Image
+                    source={badge_4}
+                    resizeMode="cover"
+                    style={{ height: 100, width: 100 }}
+                  />
+                </Badge>
+                <Text>Fabrica Modelo</Text>
+                <Text>2018</Text>
+              </ContainerBadge>
+              <ContainerBadge>
+                <Badge>
+                  <Image
+                    source={badge_4}
+                    resizeMode="cover"
+                    style={{ height: 100, width: 100 }}
+                  />
+                </Badge>
+                <Text>Fabrica Modelo</Text>
+                <Text>2017</Text>
+              </ContainerBadge>
+              <ContainerBadge>
+                <Badge>
+                  <Image
+                    source={badge_4}
+                    resizeMode="cover"
+                    style={{ height: 100, width: 100 }}
+                  />
+                </Badge>
+                <Text>Fabrica Modelo</Text>
+                <Text>2016</Text>
+              </ContainerBadge>
             </BadgesArea>
-            <ModelCompany>
-              <Text style={{ fontSize: 16, fontWeight: "bold" }}>
-                * Boas Praticas Fabris
-              </Text>
-              <Text style={{ fontSize: 16, fontWeight: "bold" }}>
-                * 1 ano sem acidentes Fabris
-              </Text>
-              <Text style={{ fontSize: 16, fontWeight: "bold" }}>
-                * 1 ano sem acidentes Fabris
-              </Text>
-              <Text style={{ fontSize: 16, fontWeight: "bold" }}>
-                * Empresa Modelo Maquinario Pesado
-              </Text>
-              <Text style={{ fontSize: 16, fontWeight: "bold" }}>
-                * Empresa Modelo 2016
-              </Text>
-              <Text style={{ fontSize: 16, fontWeight: "bold" }}>
-                * Empresa Modelo 2017
-              </Text>
-              <Text style={{ fontSize: 16, fontWeight: "bold" }}>
-                * Empresa Modelo 2018
-              </Text>
-              <Text style={{ fontSize: 16, fontWeight: "bold" }}>
-                * Empresa Modelo 2019
-              </Text>
-            </ModelCompany>
           </LeftMainContent>
         </MainContainer>
       </Container>
