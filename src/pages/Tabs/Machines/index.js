@@ -1,12 +1,12 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   Text,
   View,
   Image,
   ScrollView,
-  TouchableOpactity,
+  TouchableOpacity,
   Linking,
-} from "react-native";
+} from 'react-native';
 import {
   Container,
   BoxMachine,
@@ -17,13 +17,13 @@ import {
   LeftContainer,
   BoxChart,
   TextMachine,
-  Alert
-} from "./styles";
-import transport from "../../../assets/machines/transportador.jpg";
-import transport_baixo from "../../../assets/machines/transporter_baixo.jpg";
-import transport_efg from "../../../assets/machines/transporters_efg.jpg";
-import transport_abcd from "../../../assets/machines/transporters_abcd.jpg";
-import api from "../../../services/api";
+} from './styles';
+import transport from '../../../assets/machines/transportador.jpg';
+import transport_baixo from '../../../assets/machines/transporter_baixo.jpg';
+import transport_efg from '../../../assets/machines/transporters_efg.jpg';
+import transport_abcd from '../../../assets/machines/transporters_abcd.jpg';
+import api from '../../../services/api';
+import { WebView } from "react-native-webview";
 
 // import Chart from "react-native-chartjs";
 import {
@@ -32,73 +32,43 @@ import {
   PieChart,
   ProgressChart,
   ContributionGraph,
-  StackedBarChart,
-} from "react-native-chart-kit";
+  StackedBarChart
+} from 'react-native-chart-kit';
 
 const chartConfig = {
-  backgroundGradientFrom: "#1E2923",
-  backgroundGradientTo: "#08130D",
+  backgroundGradientFrom: '#1E2923',
+  backgroundGradientTo: '#08130D',
   color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
-  strokeWidth: 2, // optional, default 3
+  strokeWidth: 2 // optional, default 3
 };
 
 const dataRing = {
-  labels: ['Swim', 'Bike', 'Run'], // optional
-  data: [0.4, 0.6, 0.8]
+  labels: ["Swim", "Bike", "Run"], // optional
+  data: [0.4, 0.6, 0.8],
 };
 
 export class Machines extends Component {
   state = {
     data: {
-      labels: [
-        'Temperatura',
-        'Pressao',
-        'Pressao Agua',
-        'Pressao Valvula',
-        'Carga',
-        'Energia',
-      ],
+      labels: ["Temp", "Pres", "Pres A.", "Pres V", "Carga", "Ener"],
       datasets: [
         {
           data: [20, 45, 28, 80, 99, 43],
           color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`, // optional
-          strokeWidth: 2 // optional
-        },
-      ]
-    }
+          strokeWidth: 2, // optional
+        }
+      ],
+    },
   };
 
   async componentDidMount() {
-    const response = await api.get('/superagent');
+    const response = await api.get("/superagent");
     console.log(response);
   }
 
-  // mock = {
-  //   labels: ["January", "February", "March", "April", "May", "June"],
-  //   datasets: [
-  //     {
-  //       data: [
-  //         Math.random() * 100,
-  //         Math.random() * 100,
-  //         Math.random() * 100,
-  //         Math.random() * 100,
-  //         Math.random() * 100,
-  //         Math.random() * 100,
-  //       ],
-  //     }
-  //   ],
-  // };
-
   render() {
     let mock = {
-      labels: [
-        'Temperatura',
-        'Pressao',
-        'Pressao Agua',
-        'Pressao Valvula',
-        'Carga',
-        'Energia',
-      ],
+      labels: ["Temp", "Pres", "Pres A.", "Pres V", "Carga", "Ener"],
       datasets: [
         {
           data: [
@@ -107,10 +77,10 @@ export class Machines extends Component {
             Math.random() * 100,
             Math.random() * 100,
             Math.random() * 100,
-            Math.random() * 100
-          ]
-        },
-      ]
+            Math.random() * 100,
+          ],
+        }
+      ],
     };
 
     return (
@@ -182,26 +152,35 @@ export class Machines extends Component {
               </StatusMachineGraph>
             </BoxMachine>
           </ScrollView>
-          {/* <TouchableOpactity
-            onPress={() => Linking.openURL('https://www.google.com')}
+          <TouchableOpacity
+            onPress={() => Linking.openURL("https://www.google.com")}
+            style={{
+              height: 50,
+              width: 80,
+              borderRadius: 10,
+              borderWidth: 1,
+              borderColor: '#cecece',
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: "#fff",
+            }}
           >
             <Text>AR / VR</Text>
-          </TouchableOpactity> */}
+          </TouchableOpacity>
         </RightContainer>
         <LeftContainer>
           <ScrollView>
             <View>
-              <Text>Bezier Line Chart</Text>
               {(() => {
                 setInterval(() => {
                   this.mock = {
                     labels: [
-                      'Temperatura',
-                      'Pressao',
-                      'Pressao Agua',
-                      'Pressao Valvula',
-                      'Carga',
-                      'Energia',
+                      "Temp",
+                      "Pres",
+                      "Pres A.",
+                      "Pres V",
+                      "Carga",
+                      "Ener"
                     ],
                     datasets: [
                       {
@@ -211,10 +190,10 @@ export class Machines extends Component {
                           Math.random() * 100,
                           Math.random() * 100,
                           Math.random() * 100,
-                          Math.random() * 100
-                        ]
-                      },
-                    ]
+                          Math.random() * 100,
+                        ],
+                      }
+                    ],
                   };
 
                   console.log(mock);
@@ -224,21 +203,21 @@ export class Machines extends Component {
                 data={mock}
                 width={370} // from react-native
                 height={190}
-                yAxisLabel={'$'}
+                yAxisLabel={"$"}
                 chartConfig={{
-                  backgroundColor: '#000',
-                  backgroundGradientFrom: 'purple',
-                  backgroundGradientTo: '#50C',
+                  backgroundColor: "#000",
+                  backgroundGradientFrom: "purple",
+                  backgroundGradientTo: "#50C",
                   decimalPlaces: 2, // optional, defaults to 2dp
                   color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
                   style: {
-                    borderRadius: 16
-                  }
+                    borderRadius: 16,
+                  },
                 }}
                 bezier
                 style={{
                   marginVertical: 8,
-                  borderRadius: 16
+                  borderRadius: 16,
                 }}
               />
             </View>
@@ -250,7 +229,7 @@ export class Machines extends Component {
                 chartConfig={chartConfig}
                 style={{
                   marginVertical: 8,
-                  borderRadius: 16
+                  borderRadius: 16,
                 }}
               />
             </View>
@@ -262,7 +241,7 @@ export class Machines extends Component {
                 chartConfig={chartConfig}
                 style={{
                   marginVertical: 8,
-                  borderRadius: 16
+                  borderRadius: 16,
                 }}
               />
             </View>
