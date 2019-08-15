@@ -4,8 +4,8 @@ import {
   View,
   Image,
   ScrollView,
-  TouchableOpactity,
-  Linking,
+  TouchableOpacity,
+  Linking
 } from "react-native";
 import {
   Container,
@@ -16,8 +16,7 @@ import {
   RightContainer,
   LeftContainer,
   BoxChart,
-  TextMachine,
-  Alert
+  TextMachine
 } from "./styles";
 import transport from "../../../assets/machines/transportador.jpg";
 import transport_baixo from "../../../assets/machines/transporter_baixo.jpg";
@@ -42,22 +41,19 @@ const chartConfig = {
   strokeWidth: 2, // optional, default 3
 };
 
+function getRandomArbitrary(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
 const dataRing = {
-  labels: ['Swim', 'Bike', 'Run'], // optional
+  labels: ['Press', 'Water', 'Temp'], // optional
   data: [0.4, 0.6, 0.8]
 };
 
 export class Machines extends Component {
   state = {
     data: {
-      labels: [
-        'Temperatura',
-        'Pressao',
-        'Pressao Agua',
-        'Pressao Valvula',
-        'Carga',
-        'Energia',
-      ],
+      labels: ['Temp', 'Pres', 'Pres A.', 'Pres V', 'Carga', 'Ener'],
       datasets: [
         {
           data: [20, 45, 28, 80, 99, 43],
@@ -65,54 +61,53 @@ export class Machines extends Component {
           strokeWidth: 2 // optional
         },
       ]
-    }
+    },
+    status_1: "92%",
+    status_2: "79%",
+    status_3: "80%",
+    status_4: "61%"
   };
 
   async componentDidMount() {
     const response = await api.get('/superagent');
     console.log(response);
+
+    setInterval(() => {
+      this.setState({
+        status_1: Math.round(getRandomArbitrary(50, 80)) + "%",
+        status_2: Math.round(getRandomArbitrary(50, 80)) + "%",
+        status_3: Math.round(getRandomArbitrary(50, 80)) + "%",
+        status_4: Math.round(getRandomArbitrary(50, 80)) + "%"
+      });
+    }, getRandomArbitrary(15000, 20000));
+
+    setInterval(() => {
+      this.setState({
+        data: {
+          labels: ['Temp', 'Pres', 'Pres A.', 'Pres V', 'Carga', 'Ener'],
+          datasets: [
+            {
+              data: [
+                Math.random() * 100,
+                Math.random() * 100,
+                Math.random() * 100,
+                Math.random() * 100,
+                Math.random() * 100,
+                Math.random() * 100
+              ]
+            },
+          ]
+        }
+      });
+
+      {
+        /* loopGraphics(); */
+      }
+    }, getRandomArbitrary(8000, 10000));
   }
 
-  // mock = {
-  //   labels: ["January", "February", "March", "April", "May", "June"],
-  //   datasets: [
-  //     {
-  //       data: [
-  //         Math.random() * 100,
-  //         Math.random() * 100,
-  //         Math.random() * 100,
-  //         Math.random() * 100,
-  //         Math.random() * 100,
-  //         Math.random() * 100,
-  //       ],
-  //     }
-  //   ],
-  // };
-
   render() {
-    let mock = {
-      labels: [
-        'Temperatura',
-        'Pressao',
-        'Pressao Agua',
-        'Pressao Valvula',
-        'Carga',
-        'Energia',
-      ],
-      datasets: [
-        {
-          data: [
-            Math.random() * 100,
-            Math.random() * 100,
-            Math.random() * 100,
-            Math.random() * 100,
-            Math.random() * 100,
-            Math.random() * 100
-          ]
-        },
-      ]
-    };
-
+    const { status_1, status_2, status_3, status_4 } = this.state;
     return (
       <Container>
         <RightContainer>
@@ -129,7 +124,9 @@ export class Machines extends Component {
                 <TextMachine>Modelo J, Série 496</TextMachine>
               </NameMachine>
               <StatusMachineGraph>
-                <Text>Status</Text>
+                <Text style={{ fontSize: 18, fontWeight: 500 }}>
+                  {status_1}
+                </Text>
               </StatusMachineGraph>
             </BoxMachine>
             <BoxMachine>
@@ -142,10 +139,12 @@ export class Machines extends Component {
               </ImageMachine>
               <NameMachine>
                 <TextMachine>Transportador de Perfil Baixo</TextMachine>
-                <TextMachine>Modelo L Série 720</TextMachine>
+                <TextMachine>Modelo L Série 718</TextMachine>
               </NameMachine>
               <StatusMachineGraph>
-                <Text>Status</Text>
+                <Text Text style={{ fontSize: 18, fontWeight: 500 }}>
+                  {status_2}
+                </Text>
               </StatusMachineGraph>
             </BoxMachine>
             <BoxMachine>
@@ -161,7 +160,9 @@ export class Machines extends Component {
                 <TextMachine>Modelos E, F, G</TextMachine>
               </NameMachine>
               <StatusMachineGraph>
-                <Text>Status</Text>
+                <Text Text style={{ fontSize: 18, fontWeight: 500 }}>
+                  {status_3}
+                </Text>
               </StatusMachineGraph>
             </BoxMachine>
 
@@ -178,50 +179,33 @@ export class Machines extends Component {
                 <TextMachine>Modelos E, F, G</TextMachine>
               </NameMachine>
               <StatusMachineGraph>
-                <Text>Status</Text>
+                <Text Text style={{ fontSize: 18, fontWeight: 500 }}>
+                  {status_4}
+                </Text>
               </StatusMachineGraph>
             </BoxMachine>
           </ScrollView>
-          {/* <TouchableOpactity
-            onPress={() => Linking.openURL('https://www.google.com')}
+          <TouchableOpacity
+            onPress={() => Linking.openURL('dynamicar://')}
+            style={{
+              height: 50,
+              width: 80,
+              borderRadius: 10,
+              borderWidth: 1,
+              borderColor: "#cecece",
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: '#fff'
+            }}
           >
             <Text>AR / VR</Text>
-          </TouchableOpactity> */}
+          </TouchableOpacity>
         </RightContainer>
         <LeftContainer>
           <ScrollView>
             <View>
-              <Text>Bezier Line Chart</Text>
-              {(() => {
-                setInterval(() => {
-                  this.mock = {
-                    labels: [
-                      'Temperatura',
-                      'Pressao',
-                      'Pressao Agua',
-                      'Pressao Valvula',
-                      'Carga',
-                      'Energia',
-                    ],
-                    datasets: [
-                      {
-                        data: [
-                          Math.random() * 100,
-                          Math.random() * 100,
-                          Math.random() * 100,
-                          Math.random() * 100,
-                          Math.random() * 100,
-                          Math.random() * 100
-                        ]
-                      },
-                    ]
-                  };
-
-                  console.log(mock);
-                }, 1000);
-              })()}
               <LineChart
-                data={mock}
+                data={this.state.data}
                 width={370} // from react-native
                 height={190}
                 yAxisLabel={'$'}

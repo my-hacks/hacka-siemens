@@ -1,4 +1,4 @@
-import styled from 'styled-components/native';
+import styled from "styled-components/native";
 
 export const Container = styled.View`
   flex: 1;
@@ -62,6 +62,8 @@ export const StatusMachineGraph = styled.View`
   height: 100%;
   width: 30%;
   background-color: lightgray;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const BoxChart = styled.View`
