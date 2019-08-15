@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { ScrollView } from "react-native";
+import React, { Component } from 'react';
+import { ScrollView } from 'react-native';
 import {
   Container,
   Title,
@@ -7,8 +7,8 @@ import {
   TitleLine,
   StatusMachineSuccess,
   StatusMachineAlert,
-  StatusMachineDanger
-} from "./styles";
+  StatusMachineDanger,
+} from './styles';
 
 export class HomeList extends Component {
   render() {
@@ -17,20 +17,17 @@ export class HomeList extends Component {
         <Title>Status das Maquinas por prioridades</Title>
         <ScrollView>
           <LineMachine>
-            <TitleLine>Rebinboca da parafuseta</TitleLine>
+            <TitleLine>Bella™ Misturador de Zona Fluidizada</TitleLine>
             <StatusMachineSuccess />
           </LineMachine>
-
           <LineMachine>
-            <TitleLine>Rebinboca da parafuseta</TitleLine>
+            <TitleLine>BLENDCON™ Misturador a Ar</TitleLine>
             <StatusMachineDanger />
           </LineMachine>
-
           <LineMachine>
-            <TitleLine>Rebinboca da parafuseta</TitleLine>
+            <TitleLine>Modu-Kleen™ Filtro "Bin Vent" </TitleLine>
             <StatusMachineAlert />
           </LineMachine>
-
           <LineMachine>
             <TitleLine>Rebinboca da parafuseta</TitleLine>
             <StatusMachineAlert />

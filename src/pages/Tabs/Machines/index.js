@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { Text, View, Image, ScrollView, Dimensions } from "react-native";
+import {
+  Text,
+  View,
+  Image,
+  ScrollView,
+  TouchableOpactity,
+  Linking,
+} from "react-native";
 import {
   Container,
   BoxMachine,
@@ -43,7 +50,14 @@ const dataRing = {
 export class Machines extends Component {
   state = {
     data: {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+      labels: [
+        'Temperatura',
+        'Pressao',
+        'Pressao Agua',
+        'Pressao Valvula',
+        'Carga',
+        'Energia',
+      ],
       datasets: [
         {
           data: [20, 45, 28, 80, 99, 43],
@@ -55,7 +69,7 @@ export class Machines extends Component {
   };
 
   async componentDidMount() {
-    const response = await api.get("/superagent");
+    const response = await api.get('/superagent');
     console.log(response);
   }
 
@@ -77,7 +91,14 @@ export class Machines extends Component {
 
   render() {
     let mock = {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+      labels: [
+        'Temperatura',
+        'Pressao',
+        'Pressao Agua',
+        'Pressao Valvula',
+        'Carga',
+        'Energia',
+      ],
       datasets: [
         {
           data: [
@@ -161,6 +182,11 @@ export class Machines extends Component {
               </StatusMachineGraph>
             </BoxMachine>
           </ScrollView>
+          {/* <TouchableOpactity
+            onPress={() => Linking.openURL('https://www.google.com')}
+          >
+            <Text>AR / VR</Text>
+          </TouchableOpactity> */}
         </RightContainer>
         <LeftContainer>
           <ScrollView>
@@ -170,12 +196,12 @@ export class Machines extends Component {
                 setInterval(() => {
                   this.mock = {
                     labels: [
-                      'January',
-                      'February',
-                      'March',
-                      'April',
-                      'May',
-                      'June',
+                      'Temperatura',
+                      'Pressao',
+                      'Pressao Agua',
+                      'Pressao Valvula',
+                      'Carga',
+                      'Energia',
                     ],
                     datasets: [
                       {
