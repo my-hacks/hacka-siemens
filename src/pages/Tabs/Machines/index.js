@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
   Text,
   View,
   Image,
   ScrollView,
   TouchableOpacity,
-  Linking,
-} from 'react-native';
+  Linking
+} from "react-native";
 import {
   Container,
   BoxMachine,
@@ -16,14 +16,13 @@ import {
   RightContainer,
   LeftContainer,
   BoxChart,
-  TextMachine,
-} from './styles';
-import transport from '../../../assets/machines/transportador.jpg';
-import transport_baixo from '../../../assets/machines/transporter_baixo.jpg';
-import transport_efg from '../../../assets/machines/transporters_efg.jpg';
-import transport_abcd from '../../../assets/machines/transporters_abcd.jpg';
-import api from '../../../services/api';
-import { WebView } from "react-native-webview";
+  TextMachine
+} from "./styles";
+import transport from "../../../assets/machines/transportador.jpg";
+import transport_baixo from "../../../assets/machines/transporter_baixo.jpg";
+import transport_efg from "../../../assets/machines/transporters_efg.jpg";
+import transport_abcd from "../../../assets/machines/transporters_abcd.jpg";
+import api from "../../../services/api";
 
 // import Chart from "react-native-chartjs";
 import {
@@ -32,57 +31,83 @@ import {
   PieChart,
   ProgressChart,
   ContributionGraph,
-  StackedBarChart
-} from 'react-native-chart-kit';
+  StackedBarChart,
+} from "react-native-chart-kit";
 
 const chartConfig = {
-  backgroundGradientFrom: '#1E2923',
-  backgroundGradientTo: '#08130D',
+  backgroundGradientFrom: "#1E2923",
+  backgroundGradientTo: "#08130D",
   color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
-  strokeWidth: 2 // optional, default 3
+  strokeWidth: 2, // optional, default 3
 };
 
+function getRandomArbitrary(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
 const dataRing = {
-  labels: ["Swim", "Bike", "Run"], // optional
-  data: [0.4, 0.6, 0.8],
+  labels: ['Press', 'Water', 'Temp'], // optional
+  data: [0.4, 0.6, 0.8]
 };
 
 export class Machines extends Component {
   state = {
     data: {
-      labels: ["Temp", "Pres", "Pres A.", "Pres V", "Carga", "Ener"],
+      labels: ['Temp', 'Pres', 'Pres A.', 'Pres V', 'Carga', 'Ener'],
       datasets: [
         {
           data: [20, 45, 28, 80, 99, 43],
           color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`, // optional
-          strokeWidth: 2, // optional
-        }
-      ],
+          strokeWidth: 2 // optional
+        },
+      ]
     },
+    status_1: "92%",
+    status_2: "79%",
+    status_3: "80%",
+    status_4: "61%"
   };
 
   async componentDidMount() {
-    const response = await api.get("/superagent");
+    const response = await api.get('/superagent');
     console.log(response);
+
+    setInterval(() => {
+      this.setState({
+        status_1: Math.round(getRandomArbitrary(50, 80)) + "%",
+        status_2: Math.round(getRandomArbitrary(50, 80)) + "%",
+        status_3: Math.round(getRandomArbitrary(50, 80)) + "%",
+        status_4: Math.round(getRandomArbitrary(50, 80)) + "%"
+      });
+    }, getRandomArbitrary(15000, 20000));
+
+    setInterval(() => {
+      this.setState({
+        data: {
+          labels: ['Temp', 'Pres', 'Pres A.', 'Pres V', 'Carga', 'Ener'],
+          datasets: [
+            {
+              data: [
+                Math.random() * 100,
+                Math.random() * 100,
+                Math.random() * 100,
+                Math.random() * 100,
+                Math.random() * 100,
+                Math.random() * 100
+              ]
+            },
+          ]
+        }
+      });
+
+      {
+        /* loopGraphics(); */
+      }
+    }, getRandomArbitrary(8000, 10000));
   }
 
   render() {
-    let mock = {
-      labels: ["Temp", "Pres", "Pres A.", "Pres V", "Carga", "Ener"],
-      datasets: [
-        {
-          data: [
-            Math.random() * 100,
-            Math.random() * 100,
-            Math.random() * 100,
-            Math.random() * 100,
-            Math.random() * 100,
-            Math.random() * 100,
-          ],
-        }
-      ],
-    };
-
+    const { status_1, status_2, status_3, status_4 } = this.state;
     return (
       <Container>
         <RightContainer>
@@ -99,7 +124,9 @@ export class Machines extends Component {
                 <TextMachine>Modelo J, Série 496</TextMachine>
               </NameMachine>
               <StatusMachineGraph>
-                <Text>Status</Text>
+                <Text style={{ fontSize: 18, fontWeight: 500 }}>
+                  {status_1}
+                </Text>
               </StatusMachineGraph>
             </BoxMachine>
             <BoxMachine>
@@ -112,10 +139,12 @@ export class Machines extends Component {
               </ImageMachine>
               <NameMachine>
                 <TextMachine>Transportador de Perfil Baixo</TextMachine>
-                <TextMachine>Modelo L Série 720</TextMachine>
+                <TextMachine>Modelo L Série 718</TextMachine>
               </NameMachine>
               <StatusMachineGraph>
-                <Text>Status</Text>
+                <Text Text style={{ fontSize: 18, fontWeight: 500 }}>
+                  {status_2}
+                </Text>
               </StatusMachineGraph>
             </BoxMachine>
             <BoxMachine>
@@ -131,7 +160,9 @@ export class Machines extends Component {
                 <TextMachine>Modelos E, F, G</TextMachine>
               </NameMachine>
               <StatusMachineGraph>
-                <Text>Status</Text>
+                <Text Text style={{ fontSize: 18, fontWeight: 500 }}>
+                  {status_3}
+                </Text>
               </StatusMachineGraph>
             </BoxMachine>
 
@@ -148,21 +179,23 @@ export class Machines extends Component {
                 <TextMachine>Modelos E, F, G</TextMachine>
               </NameMachine>
               <StatusMachineGraph>
-                <Text>Status</Text>
+                <Text Text style={{ fontSize: 18, fontWeight: 500 }}>
+                  {status_4}
+                </Text>
               </StatusMachineGraph>
             </BoxMachine>
           </ScrollView>
           <TouchableOpacity
-            onPress={() => Linking.openURL("https://www.google.com")}
+            onPress={() => Linking.openURL('dynamicar://')}
             style={{
               height: 50,
               width: 80,
               borderRadius: 10,
               borderWidth: 1,
-              borderColor: '#cecece',
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: "#fff",
+              borderColor: "#cecece",
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: '#fff'
             }}
           >
             <Text>AR / VR</Text>
@@ -171,53 +204,25 @@ export class Machines extends Component {
         <LeftContainer>
           <ScrollView>
             <View>
-              {(() => {
-                setInterval(() => {
-                  this.mock = {
-                    labels: [
-                      "Temp",
-                      "Pres",
-                      "Pres A.",
-                      "Pres V",
-                      "Carga",
-                      "Ener"
-                    ],
-                    datasets: [
-                      {
-                        data: [
-                          Math.random() * 100,
-                          Math.random() * 100,
-                          Math.random() * 100,
-                          Math.random() * 100,
-                          Math.random() * 100,
-                          Math.random() * 100,
-                        ],
-                      }
-                    ],
-                  };
-
-                  console.log(mock);
-                }, 1000);
-              })()}
               <LineChart
-                data={mock}
+                data={this.state.data}
                 width={370} // from react-native
                 height={190}
-                yAxisLabel={"$"}
+                yAxisLabel={'$'}
                 chartConfig={{
-                  backgroundColor: "#000",
-                  backgroundGradientFrom: "purple",
-                  backgroundGradientTo: "#50C",
+                  backgroundColor: '#000',
+                  backgroundGradientFrom: 'purple',
+                  backgroundGradientTo: '#50C',
                   decimalPlaces: 2, // optional, defaults to 2dp
                   color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
                   style: {
-                    borderRadius: 16,
-                  },
+                    borderRadius: 16
+                  }
                 }}
                 bezier
                 style={{
                   marginVertical: 8,
-                  borderRadius: 16,
+                  borderRadius: 16
                 }}
               />
             </View>
@@ -229,7 +234,7 @@ export class Machines extends Component {
                 chartConfig={chartConfig}
                 style={{
                   marginVertical: 8,
-                  borderRadius: 16,
+                  borderRadius: 16
                 }}
               />
             </View>
@@ -241,7 +246,7 @@ export class Machines extends Component {
                 chartConfig={chartConfig}
                 style={{
                   marginVertical: 8,
-                  borderRadius: 16,
+                  borderRadius: 16
                 }}
               />
             </View>

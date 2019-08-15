@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
-import { Container } from './styles';
-import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
+import React, { Component } from "react";
+import { Text, View, StyleSheet } from "react-native";
+import { Container } from "./styles";
+import { Calendar, CalendarList, Agenda } from "react-native-calendars";
 
 export class CalendarView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: {}
+      items: {},
     };
   }
 
@@ -21,8 +21,8 @@ export class CalendarView extends Component {
           const numItems = Math.floor(Math.random() * 5);
           for (let j = 0; j < numItems; j++) {
             this.state.items[strTime].push({
-              name: 'Item for ' + strTime,
-              height: Math.max(50, Math.floor(Math.random() * 150))
+              name: "Item for " + strTime,
+              height: Math.max(50, Math.floor(Math.random() * 150)),
             });
           }
         }
@@ -33,7 +33,7 @@ export class CalendarView extends Component {
         newItems[key] = this.state.items[key];
       });
       this.setState({
-        items: newItems
+        items: newItems,
       });
     }, 1000);
     // console.log(`Load Items for ${day.year}-${day.month}`);
@@ -61,7 +61,7 @@ export class CalendarView extends Component {
 
   timeToString(time) {
     const date = new Date(time);
-    return date.toISOString().split('T')[0];
+    return date.toISOString().split("T")[0];
   }
 
   render() {
@@ -70,29 +70,29 @@ export class CalendarView extends Component {
         <Agenda
           items={this.state.items}
           loadItemsForMonth={this.loadItems.bind(this)}
-          selected={'2017-05-16'}
+          selected={"2017-05-16"}
           renderItem={this.renderItem.bind(this)}
           renderEmptyDate={this.renderEmptyDate.bind(this)}
           rowHasChanged={this.rowHasChanged.bind(this)}
-          style={{ width: '100%' }}
-          markingType={'period'}
+          style={{ width: "100%" }}
+          markingType={"period"}
           markedDates={{
-            '2017-05-17': { textColor: '#666' },
-            '2017-05-09': { textColor: '#666' },
-            '2017-05-14': { startingDay: true, endingDay: true },
-            '2017-05-21': {
+            "2017-05-17": { textColor: "#666" },
+            "2017-05-09": { textColor: "#666" },
+            "2017-05-14": { startingDay: true, endingDay: true },
+            "2017-05-21": {
               startingDay: true,
-              color: "blue",
-              text: "Testando"
+              color: 'lightblue',
+              text: 'Testando',
             },
-            '2017-05-22': { endingDay: true, color: 'gray' },
-            '2017-05-24': { startingDay: true, color: 'gray' },
-            '2017-05-25': { color: 'gray' },
-            '2017-05-26': { endingDay: true, color: 'gray' },
+            "2017-05-22": { endingDay: true, color: "gray" },
+            "2017-05-24": { startingDay: true, color: "gray" },
+            "2017-05-25": { color: "gray" },
+            "2017-05-26": { endingDay: true, color: "gray" }
           }}
-          monthFormat={'yyyy'}
-          theme={{ calendarBackground: "#fff", agendaKnobColor: "green" }}
-          renderDay={(day, item) => <Text>{day ? day.day : "item"}</Text>}
+          monthFormat={"yyyy"}
+          theme={{ calendarBackground: '#fff', agendaKnobColor: 'green' }}
+          renderDay={(day, item) => <Text>{day ? day.day : 'item'}</Text>}
         />
       </Container>
     );
@@ -101,18 +101,18 @@ export class CalendarView extends Component {
 
 const styles = StyleSheet.create({
   item: {
-    backgroundColor: 'white',
+    backgroundColor: "white",
     flex: 1,
     borderRadius: 5,
     padding: 10,
     marginRight: 10,
-    marginTop: 17
+    marginTop: 17,
   },
   emptyDate: {
     height: 15,
     flex: 1,
-    paddingTop: 30
-  }
+    paddingTop: 30,
+  },
 });
 
 export default CalendarView;

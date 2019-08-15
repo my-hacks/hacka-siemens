@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { ScrollView } from 'react-native';
+import React, { Component } from "react";
+import { ScrollView } from "react-native";
 import {
   Container,
   Title,
@@ -7,8 +7,8 @@ import {
   TitleLine,
   StatusMachineSuccess,
   StatusMachineAlert,
-  StatusMachineDanger,
-} from './styles';
+  StatusMachineDanger
+} from "./styles";
 
 export class HomeList extends Component {
   render() {
@@ -17,8 +17,12 @@ export class HomeList extends Component {
         <Title>Status das Maquinas por prioridades</Title>
         <ScrollView>
           <LineMachine>
-            <TitleLine>Bella™ Misturador de Zona Fluidizada</TitleLine>
-            <StatusMachineSuccess />
+            <TitleLine>Modu-Kleen™ Filtro "Bin Vent" Tipo Cartucho</TitleLine>
+            <StatusMachineDanger />
+          </LineMachine>
+          <LineMachine>
+            <TitleLine>Modu-Kleen™ Bin Vent/Dust Collector</TitleLine>
+            <StatusMachineDanger />
           </LineMachine>
           <LineMachine>
             <TitleLine>BLENDCON™ Misturador a Ar</TitleLine>
@@ -29,12 +33,16 @@ export class HomeList extends Component {
             <StatusMachineAlert />
           </LineMachine>
           <LineMachine>
-            <TitleLine>Rebinboca da parafuseta</TitleLine>
+            <TitleLine>Bin Vent/Dust Collector</TitleLine>
             <StatusMachineAlert />
           </LineMachine>
           <LineMachine>
-            <TitleLine>Rebinboca da parafuseta</TitleLine>
+            <TitleLine>Modu-Kleen™ Filtro Cartucho</TitleLine>
             <StatusMachineAlert />
+          </LineMachine>
+          <LineMachine>
+            <TitleLine>Bella™ Misturador de Zona Fluidizada</TitleLine>
+            <StatusMachineSuccess />
           </LineMachine>
         </ScrollView>
       </Container>
