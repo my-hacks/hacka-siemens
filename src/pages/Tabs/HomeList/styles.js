@@ -1,4 +1,4 @@
-import styled from 'styled-components/native';
+import styled from "styled-components/native";
 
 export const Container = styled.View`
   flex: 1;
@@ -12,12 +12,12 @@ export const Title = styled.Text`
 `;
 
 export const LineMachine = styled.View`
-  height: 80px;
+  height: 60px;
   width: 100%;
   border-radius: 20px;
   background-color: #fff;
   margin: 10px 0px;
-  border-width: 2px;
+  border-width: 1px;
   border-color: #cecece;
   flex-direction: row;
   justify-content: space-between;

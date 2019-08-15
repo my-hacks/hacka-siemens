@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, View } from "react-native";
+import { ScrollView } from "react-native";
 import {
   Container,
   Title,
@@ -15,29 +15,31 @@ export class HomeList extends Component {
     return (
       <Container>
         <Title>Status das Maquinas por prioridades</Title>
-        <LineMachine>
-          <TitleLine>Rebinboca da parafuseta</TitleLine>
-          <StatusMachineSuccess />
-        </LineMachine>
+        <ScrollView>
+          <LineMachine>
+            <TitleLine>Rebinboca da parafuseta</TitleLine>
+            <StatusMachineSuccess />
+          </LineMachine>
 
-        <LineMachine>
-          <TitleLine>Rebinboca da parafuseta</TitleLine>
-          <StatusMachineDanger />
-        </LineMachine>
+          <LineMachine>
+            <TitleLine>Rebinboca da parafuseta</TitleLine>
+            <StatusMachineDanger />
+          </LineMachine>
 
-        <LineMachine>
-          <TitleLine>Rebinboca da parafuseta</TitleLine>
-          <StatusMachineAlert />
-        </LineMachine>
+          <LineMachine>
+            <TitleLine>Rebinboca da parafuseta</TitleLine>
+            <StatusMachineAlert />
+          </LineMachine>
 
-        <LineMachine>
-          <TitleLine>Rebinboca da parafuseta</TitleLine>
-          <StatusMachineAlert />
-        </LineMachine>
-        <LineMachine>
-          <TitleLine>Rebinboca da parafuseta</TitleLine>
-          <StatusMachineAlert />
-        </LineMachine>
+          <LineMachine>
+            <TitleLine>Rebinboca da parafuseta</TitleLine>
+            <StatusMachineAlert />
+          </LineMachine>
+          <LineMachine>
+            <TitleLine>Rebinboca da parafuseta</TitleLine>
+            <StatusMachineAlert />
+          </LineMachine>
+        </ScrollView>
       </Container>
     );
   }

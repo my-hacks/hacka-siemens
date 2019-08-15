@@ -13,19 +13,20 @@ import CalendarView from './pages/Tabs/CalendarView';
 import React from 'react';
 import { Image } from 'react-native';
 import IconFontAwesome from 'react-native-vector-icons/FontAwesome';
+import Badges from './pages/Tabs/Badges';
 
 IconFontAwesome.loadFont();
 
 const BottomTabs = createBottomTabNavigator({
-  Calendar: {
-    screen: CalendarView,
+  Badges: {
+    screen: Badges,
     navigationOptions: {
-      title: "CalendarView",
-      tabBarLabel: "CALENDAR",
+      title: 'Conquistas',
+      tabBarLabel: 'BADGES',
       tabBarIcon: () => (
-        <IconFontAwesome name="calendar" size={21} color="#7A7A7A" />
-      )
-    },
+        <IconFontAwesome name="certificate" size={21} color="#7A7A7A" />
+      ),
+    }
   },
   HomeList: {
     screen: HomeList,
@@ -44,6 +45,16 @@ const BottomTabs = createBottomTabNavigator({
       tabBarLabel: "MACHINES",
       tabBarIcon: () => (
         <IconFontAwesome name="gears" size={21} color="#7A7A7A" />
+      )
+    },
+  },
+  Calendar: {
+    screen: CalendarView,
+    navigationOptions: {
+      title: "CalendarView",
+      tabBarLabel: "CALENDAR",
+      tabBarIcon: () => (
+        <IconFontAwesome name="calendar" size={21} color="#7A7A7A" />
       )
     },
   }
