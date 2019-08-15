@@ -2,51 +2,50 @@ import {
   createAppContainer,
   createSwitchNavigator,
   createStackNavigator,
-  createBottomTabNavigator
-} from "react-navigation";
+  createBottomTabNavigator,
+} from 'react-navigation';
 
-import Login from './pages/Login';
-import Home from "./pages/Home";
-import HomeList from "./pages/Tabs/HomeList";
-import Machines from "./pages/Tabs/Machines";
-import Calendar from "./pages/Tabs/Calendar";
-import React from "react";
-import { Image } from "react-native";
-import IconFontAwesome from "react-native-vector-icons/FontAwesome";
+import Login from "./pages/Login";
+import Home from './pages/Home';
+import HomeList from './pages/Tabs/HomeList';
+import Machines from './pages/Tabs/Machines';
+import CalendarView from './pages/Tabs/CalendarView';
+import React from 'react';
+import { Image } from 'react-native';
+import IconFontAwesome from 'react-native-vector-icons/FontAwesome';
 
 IconFontAwesome.loadFont();
 
 const BottomTabs = createBottomTabNavigator({
-  Machines: {
-    screen: Machines,
+  Calendar: {
+    screen: CalendarView,
     navigationOptions: {
-      title: 'Machines',
-      tabBarLabel: 'MACHINES',
+      title: "CalendarView",
+      tabBarLabel: "CALENDAR",
       tabBarIcon: () => (
-        <IconFontAwesome name="gears" size={21} color="#7A7A7A" />
-      ),
-    }
+        <IconFontAwesome name="calendar" size={21} color="#7A7A7A" />
+      )
+    },
   },
   HomeList: {
     screen: HomeList,
     navigationOptions: {
-      title: 'Home',
+      title: "Home",
       tabBarIcon: () => (
         <IconFontAwesome name="home" size={21} color="#7A7A7A" />
       ),
-      tabBarLabel: 'HOME',
-    }
+      tabBarLabel: "HOME"
+    },
   },
-
-  Calendar: {
-    screen: Calendar,
+  Machines: {
+    screen: Machines,
     navigationOptions: {
-      title: 'Calendar',
-      tabBarLabel: 'CALENDAR',
+      title: "Machines",
+      tabBarLabel: "MACHINES",
       tabBarIcon: () => (
-        <IconFontAwesome name="calendar" size={21} color="#7A7A7A" />
-      ),
-    }
+        <IconFontAwesome name="gears" size={21} color="#7A7A7A" />
+      )
+    },
   }
 });
 
@@ -54,7 +53,7 @@ const Routes = createAppContainer(
   createSwitchNavigator({
     BottomTabs,
     Login,
-    Home
+    Home,
   })
 );
 
