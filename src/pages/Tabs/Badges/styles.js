@@ -1,4 +1,4 @@
-import styled from "styled-components/native";
+import styled from 'styled-components/native';
 
 export const Container = styled.View`
   flex: 1;
@@ -81,6 +81,7 @@ export const Badge = styled.View`
   border-color: #cecece;
   align-items: center;
   justify-content: center;
+  background-color: #fff;
 `;
 
 export const ModelCompany = styled.View`

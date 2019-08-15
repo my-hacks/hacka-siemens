@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Text, View, Image, ScrollView, Dimensions } from 'react-native';
+import React, { Component } from "react";
+import { Text, View, Image, ScrollView, Dimensions } from "react-native";
 import {
   Container,
   BoxMachine,
@@ -9,12 +9,14 @@ import {
   RightContainer,
   LeftContainer,
   BoxChart,
-  TextMachine
-} from './styles';
-import transport from '../../../assets/machines/transportador.jpg';
-import transport_baixo from '../../../assets/machines/transporter_baixo.jpg';
-import transport_efg from '../../../assets/machines/transporters_efg.jpg';
-import transport_abcd from '../../../assets/machines/transporters_abcd.jpg';
+  TextMachine,
+  Alert
+} from "./styles";
+import transport from "../../../assets/machines/transportador.jpg";
+import transport_baixo from "../../../assets/machines/transporter_baixo.jpg";
+import transport_efg from "../../../assets/machines/transporters_efg.jpg";
+import transport_abcd from "../../../assets/machines/transporters_abcd.jpg";
+import api from "../../../services/api";
 
 // import Chart from "react-native-chartjs";
 import {
@@ -23,36 +25,73 @@ import {
   PieChart,
   ProgressChart,
   ContributionGraph,
-  StackedBarChart
-} from 'react-native-chart-kit';
+  StackedBarChart,
+} from "react-native-chart-kit";
 
 const chartConfig = {
-  backgroundGradientFrom: '#1E2923',
-  backgroundGradientTo: '#08130D',
+  backgroundGradientFrom: "#1E2923",
+  backgroundGradientTo: "#08130D",
   color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
-  strokeWidth: 2 // optional, default 3
+  strokeWidth: 2, // optional, default 3
 };
 
 const dataRing = {
-  labels: ["Swim", "Bike", "Run"], // optional
-  data: [0.4, 0.6, 0.8],
+  labels: ['Swim', 'Bike', 'Run'], // optional
+  data: [0.4, 0.6, 0.8]
 };
 
 export class Machines extends Component {
   state = {
     data: {
-      labels: ["January", "February", "March", "April", "May", "June"],
+      labels: ['January', 'February', 'March', 'April', 'May', 'June'],
       datasets: [
         {
           data: [20, 45, 28, 80, 99, 43],
           color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`, // optional
-          strokeWidth: 2, // optional
-        }
-      ],
-    },
+          strokeWidth: 2 // optional
+        },
+      ]
+    }
   };
 
+  async componentDidMount() {
+    const response = await api.get("/superagent");
+    console.log(response);
+  }
+
+  // mock = {
+  //   labels: ["January", "February", "March", "April", "May", "June"],
+  //   datasets: [
+  //     {
+  //       data: [
+  //         Math.random() * 100,
+  //         Math.random() * 100,
+  //         Math.random() * 100,
+  //         Math.random() * 100,
+  //         Math.random() * 100,
+  //         Math.random() * 100,
+  //       ],
+  //     }
+  //   ],
+  // };
+
   render() {
+    let mock = {
+      labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+      datasets: [
+        {
+          data: [
+            Math.random() * 100,
+            Math.random() * 100,
+            Math.random() * 100,
+            Math.random() * 100,
+            Math.random() * 100,
+            Math.random() * 100
+          ]
+        },
+      ]
+    };
+
     return (
       <Container>
         <RightContainer>
@@ -127,46 +166,53 @@ export class Machines extends Component {
           <ScrollView>
             <View>
               <Text>Bezier Line Chart</Text>
+              {(() => {
+                setInterval(() => {
+                  this.mock = {
+                    labels: [
+                      'January',
+                      'February',
+                      'March',
+                      'April',
+                      'May',
+                      'June',
+                    ],
+                    datasets: [
+                      {
+                        data: [
+                          Math.random() * 100,
+                          Math.random() * 100,
+                          Math.random() * 100,
+                          Math.random() * 100,
+                          Math.random() * 100,
+                          Math.random() * 100
+                        ]
+                      },
+                    ]
+                  };
+
+                  console.log(mock);
+                }, 1000);
+              })()}
               <LineChart
-                data={{
-                  labels: [
-                    "January",
-                    "February",
-                    "March",
-                    "April",
-                    "May",
-                    "June"
-                  ],
-                  datasets: [
-                    {
-                      data: [
-                        Math.random() * 100,
-                        Math.random() * 100,
-                        Math.random() * 100,
-                        Math.random() * 100,
-                        Math.random() * 100,
-                        Math.random() * 100,
-                      ],
-                    }
-                  ],
-                }}
+                data={mock}
                 width={370} // from react-native
                 height={190}
-                yAxisLabel={"$"}
+                yAxisLabel={'$'}
                 chartConfig={{
-                  backgroundColor: "#000",
-                  backgroundGradientFrom: "purple",
-                  backgroundGradientTo: "#50C",
+                  backgroundColor: '#000',
+                  backgroundGradientFrom: 'purple',
+                  backgroundGradientTo: '#50C',
                   decimalPlaces: 2, // optional, defaults to 2dp
                   color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
                   style: {
-                    borderRadius: 16,
-                  },
+                    borderRadius: 16
+                  }
                 }}
                 bezier
                 style={{
                   marginVertical: 8,
-                  borderRadius: 16,
+                  borderRadius: 16
                 }}
               />
             </View>
@@ -178,7 +224,7 @@ export class Machines extends Component {
                 chartConfig={chartConfig}
                 style={{
                   marginVertical: 8,
-                  borderRadius: 16,
+                  borderRadius: 16
                 }}
               />
             </View>
@@ -190,7 +236,7 @@ export class Machines extends Component {
                 chartConfig={chartConfig}
                 style={{
                   marginVertical: 8,
-                  borderRadius: 16,
+                  borderRadius: 16
                 }}
               />
             </View>
